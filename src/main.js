@@ -35,7 +35,7 @@ function paintMap() {
 
 	content = bl1 + jsonloc + "\")]%% " + bl2 + bl3 + bl4;
 
-	default_content = "<p><h4><b>Content Recommendation Powered by Hux&copy;</b></p>";
+	default_content = "<p><h4><b>Content Builder SDK</b></p>";
 	sdk.setSuperContent(default_content, (newSuperContent) => {});
 	sdk.setContent(content);
 	sdk.setData({
