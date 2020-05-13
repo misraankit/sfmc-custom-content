@@ -91,26 +91,26 @@ function debounce(func, wait, immediate) {
 }
 
 function paintSettings() {
-	document.getElementById('text-input-id-0').value = jsonloc;
+	document.getElementById('text-input-id-0').value = json_loc;
 }
 
 function paintMap() {
-	jsonloc = document.getElementById('text-input-id-0').value;
+	json_loc = document.getElementById('text-input-id-0').value;
 
 	bl1 = "%%[var @dataurl set @dataurl = HTTPGet(\"";
-	bl2 = "{{.datasource MSContent source = @dataurl type = variable}}{{.data}} { \"target\": \"@dataurl\",\"filter\": \"CUSTOMER_INDID == [INDID]\"}";
+	bl2 = "{{.datasource MSContent source = @dataurl type = variable}}{{.data}} { \"target\": \"@dataurl\",\"filter\": \"Contact_ID == [ID]\"}";
 	bl3 = "{{/data}} {{.datasource contacts type = nested}} {{.data}} {\"target\": \"MSContent.content\"} {{/data}}";
-	bl4 = "{{#if CUSTOMER_INDID == [INDID]}} <img src =\"{{ContentUrl}}\"> {{/if}} {{/datasource}} {{/datasource}}";
+	bl4 = "{{#if Contact_ID == [ID]}} <img src =\"{{url}}\"> {{/if}} {{/datasource}} {{/datasource}}";
 
-	content = bl1 + jsonloc + "\")]%% " + bl2 + bl3 + bl4;
+	content = bl1 + json_loc + "\")]%% " + bl2 + bl3 + bl4;
 
 	default_content = "<p><h4><b>Content SDK Demo</b></p>";
 	sdk.setSuperContent(default_content, (newSuperContent) => {});
 	sdk.setContent(content);
 	sdk.setData({
-		jsonloc: jsonloc
+		json_loc: json_loc
 	});
-	localStorage.setItem('jsonlocationforblock', jsonloc);
+	localStorage.setItem('jsonlocationforblock', json_loc);
 }
 
 sdk.getData(function (data) {
